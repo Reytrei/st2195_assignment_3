@@ -62,7 +62,7 @@ airports_db <- tbl(conn,"Airports")
 Carriers_db <- tbl(conn, "Carriers")
 Ontime_db <- tbl(conn,"Combined")
 
-q5 <- inner_join(Carriers_db,Ontime_db by = c("carriers.code" = "ontime.UniqueCarrier")) %>%
+q5 <- inner_join(Carriers_db,Ontime_db, by = c("carriers.code" = "ontime.UniqueCarrier")) %>%
   filter(ontime.Cancelled == 1 & carriers.Description IN ('United Air Lines Inc.', 'American Airlines Inc.', 'Pinnacle Airlines Inc.', 'Delta Air Lines Inc.')) %>%
   select(carriers.Description, count(*) as total)
 group_by(carriers.Description) %>%
